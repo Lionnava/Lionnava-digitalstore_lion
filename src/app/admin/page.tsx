@@ -1,3 +1,5 @@
+'use client'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Shield, Store } from 'lucide-react'
 
@@ -80,7 +82,7 @@ export default function AdminPage() {
           © {new Date().getFullYear()} Tienda Manager - Sistema Multi-Tenant de Gestión de Tiendas
         </p>
         <p className="text-xs mt-1">
-          Powered by Next.js 15, TypeScript, Tailwind CSS, Supabase PostgreSQL
+          Powered by Next.js 14.4, TypeScript, Tailwind CSS, Supabase PostgreSQL
         </p>
       </div>
     </div>
