@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Despliegue Manual - Panel de Administración</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2563eb;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h2 {
+            color: #1e293b;
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #475569;
+            margin-bottom: 15px;
+        }
+        .step {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .step-number {
+            font-weight: bold;
+            color: #2563eb;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .code {
+            background-color: #1e1e1e;
+            color: #00ff9d;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .note {
+            background-color: #fef3c7;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #f59e0b;
+            margin-bottom: 20px;
+        }
+        .success {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 20px;
+        }
+        .copy-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .copy-btn:hover {
+            background-color: #1d4ed8;
+        }
+        .file-name {
+            background-color: #f8fafc;
+            padding: 8px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Panel de Administración - Guía de Despliegue Manual</h1>
+
+        <div class="success">
+            <p><strong>¡ARCHIVO CREADO CON ÉXITO!</strong> Sigue estos pasos para subir los cambios manualmente a Vercel.</p>
+        </div>
+
+        <h2>📋 Paso 1: Actualizar las variables de entorno en Vercel</h2>
+
+        <div class="step">
+            <div class="step-number">PASO 1.1</div>
+            <p>Entra a Vercel Dashboard:</p>
+            <a href="https://vercel.com/dashboard" target="_blank" style="color: #2563eb;">https://vercel.com/dashboard</a>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 1.2</div>
+            <p>Abre tu proyecto: <strong>digitalstore-lion</strong></p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 1.3</div>
+            <p>Ve a la pestaña <strong>"Settings"</strong> (Configuración)</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 1.4</div>
+            <p>En el menú lateral, haz clic en <strong>"Environment Variables"</strong> (Variables de Entorno)</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 1.5</div>
+            <p>Verifica que las siguientes variables estén configuradas (con Environment: Production, Preview, Development):</p>
+            <ul>
+                <li>✅ <strong>NEXT_PUBLIC_SUPABASE_URL:</strong> https://ercorogrosythlyrvqia.supabase.co</li>
+                <li>✅ <strong>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY:</strong> sb_publishable_7Ut5_kRpL_rmYxjFlSz7Gg_QsoLwnQp</li>
+                <li>✅ <strong>NEXTAUTH_SECRET:</strong> (cualquier cadena larga y aleatoria, mínimo 32 caracteres)</li>
+                <li>✅ <strong>NEXTAUTH_URL:</strong> https://digitalstore-lion.vercel.app</li>
+            </ul>
+        </div>
+
+        <h2>📝 Paso 2: Desplegar los cambios en Vercel</h2>
+
+        <div class="step">
+            <div class="step-number">PASO 2.1</div>
+            <p>En el menú lateral, haz clic en <strong>"Deployments"</strong> (Despliegues)</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 2.2</div>
+            <p>Busca el deployment más reciente (debe estar arriba)</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 2.3</div>
+            <p>Verifica el estado:</p>
+            <ul>
+                <li>✅ <strong>Ready:</strong> Despliegue completado (es lo que queremos)</li>
+                <li>🟡 <strong>Building:</strong> Compilando (espera 2-3 minutos)</li>
+                <li>🔴 <strong>Failed/Error:</strong> Hubo un error en la compilación (ve los logs)</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 2.4</div>
+            <p>Si hay un error, haz clic en <strong>"Logs"</strong> para ver qué salió mal</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 2.5</div>
+            <p>Para forzar un nuevo despliegue, haz clic en el botón <strong>"Redeploy"</strong> (flecha cíclica ↻) en la esquina superior derecha del deployment</p>
+        </div>
+
+        <h2>✅ Paso 3: Verificar el despliegue</h2>
+
+        <div class="step">
+            <div class="step-number">PASO 3.1</div>
+            <p>Entra a tu aplicación en el navegador:</p>
+            <a href="https://digitalstore-lion.vercel.app/admin" target="_blank" style="color: #2563eb;">https://digitalstore-lion.vercel.app/admin</a>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 3.2</div>
+            <p>Debes ver:</p>
+            <ul>
+                <li>✅ Header: "Panel de Administración"</li>
+                <li>✅ Cards de resumen rápido (Plataforma, Usuarios, Ventas, Ingresos)</li>
+                <li>✅ Card de información de administrador</li>
+                <li>✅ Card de métricas globales</li>
+                <li>✅ Tabla de tiendas (o mensaje "No hay tiendas registradas")</li>
+                <li>✅ Footer con copyright</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-number">PASO 3.3</div>
+            <p>Si ves un error o la página blanca, haz lo siguiente:</p>
+            <ul>
+                <li>🔒 Espera 1-2 minutos a que el despliegue se complete</li>
+                <li>🔄 Refresca la página (F5)</li>
+                <li>🧹 Limpia el caché del navegador (Ctrl+Shift+Delete)</li>
+                <li>📋 Verifica los logs en Vercel Dashboard</li>
+            </ul>
+        </div>
+
+        <h2>📂 Paso 4: Archivos Modificados/Recomendados</h2>
+
+        <div class="note">
+            <p><strong>Archivos creados/actualizados:</strong></p>
+            <ul>
+                <li>✅ <code>src/app/admin/page.tsx</code> - Página principal del panel de administración</li>
+                <li>✅ <code>src/components/admin/PanelGestionTiendas.tsx</code> - Componente con la tabla de tiendas y todas las acciones (suspender, activar, renovar licencia, eliminar)</li>
+                <li>✅ Supabase: Tablas creadas (Tienda, UsuarioTienda, Producto, Venta, DetalleVenta, Compra, DetalleCompra, Alerta)</li>
+                <li>✅ Supabase: RLS habilitado para todas las tablas</li>
+                <li>✅ Supabase: Políticas de lectura (SELECT) creadas para todas las tablas</li>
+            </ul>
+        </div>
+
+        <h2>💡 Características del Panel de Administración</h2>
+
+        <div class="note">
+            <p><strong>Qué incluye el panel:</strong></p>
+            <ul>
+                <li>📊 <strong>Métricas Globales:</strong> Total tiendas, tiendas activas, tiendas suspendidas, total usuarios</li>
+                <li>📋 <strong>Tabla de Tiendas:</strong> Lista completa con todas las tiendas registradas</li>
+                <li>🔐 <strong>Información de Tienda:</strong> Dialog con detalles completos de cada tienda (nombre, email, dirección, teléfono, estado, licencia)</li>
+                <li>👥 <strong>Usuarios de la Tienda:</strong> Lista de usuarios de cada tienda</li>
+                <li>⏰ <strong>Control de Licencia:</strong> Ver días restantes, renovar automáticamente (+1 año)</li>
+                <li>🔄 <strong>Suspender/Activar:</strong> Control de acceso según pagos</li>
+                <li>🗑️ <strong>Eliminar Tienda:</strong> Borrar tienda con todos sus datos (cascade delete)</li>
+                <li>💰 <strong>Monetización:</strong> Información sobre cómo cobrar por tienda, por usuario adicional, planes con límites de productos, ingresos pasivos</li>
+                <li>💡 <strong>Tips de Administración:</strong> Guía sobre cómo gestionar el sistema multi-tenant</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <p><strong>¡ESTÁS LISTO!</strong> Sigue los pasos arriba para desplegar y ver tu nuevo Panel de Administración.</p>
+            <p><strong>URL del Panel:</strong> <a href="https://digitalstore-lion.vercel.app/admin" target="_blank">https://digitalstore-lion.vercel.app/admin</a></p>
+            <p><strong>URL de Vercel Dashboard:</strong> <a href="https://vercel.com/dashboard" target="_blank">https://vercel.com/dashboard</a></p>
+        </div>
+
+        <hr style="margin: 30px 0; border-top: 1px solid #e2e8f0;">
+
+        <div class="note">
+            <p><strong>¿Tienes problemas con el despliegue?</strong></p>
+            <ul>
+                <li>📋 Verifica los <strong>Logs</strong> en Vercel Dashboard</li>
+                <li>⚙️ Verifica que las <strong>Environment Variables</strong> estén correctas</li>
+                <li>🔄 Intenta hacer <strong>Redeploy</strong> del deployment</li>
+                <li>📞 Si el problema persiste, cuéntame los detalles del error</li>
+            </ul>
+        </div>
+
+        <hr style="margin: 30px 0; border-top: 1px solid #e2e8f0;">
+
+        <div class="note">
+            <p><strong>Recordatorio:</strong> Este archivo es una guía HTML. Los cambios ya están en tu proyecto en:</p>
+            <div class="file-name">/home/z/my-project/</div>
+            <ul>
+                <li>✅ <code>src/app/admin/page.tsx</code></li>
+                <li>✅ <code>src/components/admin/PanelGestionTiendas.tsx</code></li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: #6b7280;">
+            <p>Generado automáticamente el 30 de diciembre de 2024</p>
+            <p>Para el proyecto: digitalstore-lion</p>
+        </div>
+    </div>
+</body>
+</html>

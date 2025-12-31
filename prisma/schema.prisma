@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Producto {
+  id              String    @id @default(cuid())
+  nombre          String
+  codigoBarras    String?   @unique
+  codigoQR        String?   @unique
+  descripcion     String?
+  precioCosto     Float     @default(0)
+  precioVenta     Float
+  stockActual     Int       @default(0)
+  stockMinimo     Int       @default(0)
+  categoria       String?
+  proveedor       String?
+  fechaVencimiento DateTime?
+  imagen          String?
+  activo          Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  detallesVenta    DetalleVenta[]
+  detallesCompra   DetalleCompra[]
+}
+
+model Venta {
+  id          String        @id @default(cuid())
+  fecha       DateTime      @default(now())
+  total       Float         @default(0)
+  metodoPago  String?       @default("efectivo")
+  notas       String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  detalles    DetalleVenta[]
+}
+
+model DetalleVenta {
+  id           String  @id @default(cuid())
+  ventaId      String
+  productoId   String
+  cantidad     Int
+  precioUnitario Float
+  subtotal     Float
+  createdAt    DateTime @default(now())
+
+  venta        Venta    @relation(fields: [ventaId], references: [id], onDelete: Cascade)
+  producto     Producto @relation(fields: [productoId], references: [id])
+}
+
+model Compra {
+  id          String         @id @default(cuid())
+  fecha       DateTime       @default(now())
+  proveedor   String?
+  total       Float          @default(0)
+  notas       String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  detalles    DetalleCompra[]
+}
+
+model DetalleCompra {
+  id           String   @id @default(cuid())
+  compraId     String
+  productoId   String
+  cantidad     Int
+  precioCosto  Float
+  subtotal     Float
+  createdAt    DateTime @default(now())
+
+  compra       Compra   @relation(fields: [compraId], references: [id], onDelete: Cascade)
+  producto     Producto @relation(fields: [productoId], references: [id])
+}
+
+model Alerta {
+  id          String   @id @default(cuid())
+  tipo        String   // 'stock_bajo', 'vencimiento', 'venta_destacada', 'compra_requerida'
+  titulo      String
+  mensaje     String
+  productoId  String?
+  leida       Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
