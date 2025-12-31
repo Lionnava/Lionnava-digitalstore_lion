@@ -9,3 +9,4 @@ export default function AdminLayout({
     </div>
   )
 }
+// Cambio forzado para Vercel 1
