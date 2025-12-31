@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabaseServer";
-// import { redirect } from "next/navigation"; // <--- Comentado para probar
+import { redirect } from "next/navigation"; <--- Comentado para probar
 import React from "react";
 
 export default async function AdminLayout({
@@ -14,11 +14,9 @@ export default async function AdminLayout({
   } = await supabase.auth.getUser();
 
   // HE COMENTADO ESTO PARA QUE PUEDAS ENTRAR A VER EL DISEÑO
-  /* 
   if (!user) {
     redirect("/");
   }
-  */
 
   return (
     <div className="min-h-screen flex flex-col">
